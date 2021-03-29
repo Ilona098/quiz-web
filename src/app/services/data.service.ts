@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Category} from '../interfaces/category';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Question} from '../interfaces/question';
 import {User} from '../interfaces/user';
 @Injectable({
@@ -10,6 +10,7 @@ import {User} from '../interfaces/user';
 export class DataService {
   private user = '';
   private objectId = '';
+  private question: Question;
 
   backendUrl = 'http://localhost:3000';
 
@@ -110,5 +111,22 @@ export class DataService {
   resetStorage() {
     this.setToken('');
     this.setUserName('');
+  }
+  setter(question: Question) {
+    this.question = question;
+  }
+  getter() {
+    return this.question;
+  }
+  // updateQuestion(question: Question): Observable<any> {
+  //   const url = this.backendUrl + '/questions/' + question._id;
+  //   return this.http.patch<User>(url, [{question}]);
+  //
+  // }
+  updateQuestion(question: Question): Observable<any> {
+    const url = this.backendUrl + '/questions/' + question._id;
+    return this.http.patch<User>(url, JSON.stringify([{'propQuestion': 'question', 'value': question.question},
+      {'propQuestion': 'questionCategory', 'value': question.questionCategory},
+      {'propQuestion': 'answers', 'value': question.answers}]), this.httpOptions);
   }
 }

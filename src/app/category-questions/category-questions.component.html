@@ -4,7 +4,9 @@
       <div *ngIf="currentQuestion < 5">
         <p class="text-center">{{currentQuestion + 1}} of {{questions.length}}</p>
         <h3>{{questions[currentQuestion].question}}</h3>
-        <ul class="list-group" *ngFor="let question of questions[currentQuestion].answers">
+        <h2>{{questions[currentQuestion]._id}}</h2>
+        <button class="btn btn-danger" (click)="onEditQuestion()" >Edit</button>
+        <ul class="list-group" *ngFor="let question of questions[currentQuestion].answers" >
           <label>
             <li class="list-group-item">
               <input type="radio" (change)="onAnswer(question)" [disabled]="answerSelected">

@@ -1,14 +1,25 @@
+<!--<div (onUpdateQuestion)="showEditForm($event._id)">-->
+<div>
 <form [formGroup]="questionForm" (submit)="submitForm()">
   <div class="container col-md-2" style="margin-top: 15px">
     <div class="form-group">
-      <label for="login">Question</label>
-      <input type="text" class="form-control" formControlName="question" id="question">
+      <label for="question">Question</label>
+      <input type="text" class="form-control" formControlName="question" id="question" name="question" [(ngModel)]="question.question">
     </div>
     <div class="form-group">
-      <label for="password">Answer 1</label>
-      <input type="password" class="form-control" formControlName="password" id="password">
+      <label for="answers1">Answer 1</label>
+      <input type="text" class="form-control" formControlName="answers1" id="answers1" [(ngModel)]="question.answers[0]">
     </div>
-    <button type="button" class="btn btn-primary" type="submit">Update</button>
-    <button type="button" class="btn btn-primary" type="submit">Cancel</button>
+    <div class="form-group">
+      <label for="answers2">Answer 2</label>
+      <input type="text" class="form-control" formControlName="answers2" id="answers2" [(ngModel)]="question.answers[1]">
+    </div>
+    <div class="form-group">
+      <label for="answers3">Answer 3</label>
+      <input type="text" class="form-control" formControlName="answers3" id="answers3" [(ngModel)]="question.answers[2]">
+    </div>
+    <button type="button" (click)="save()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Update</button>
+    <button type="button" (click)="close()" class="btn btn-primary" type="submit">Cancel</button>
   </div>
 </form>
+</div>
