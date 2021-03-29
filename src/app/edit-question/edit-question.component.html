@@ -1,0 +1,14 @@
+<form [formGroup]="questionForm" (submit)="submitForm()">
+  <div class="container col-md-2" style="margin-top: 15px">
+    <div class="form-group">
+      <label for="login">Question</label>
+      <input type="text" class="form-control" formControlName="question" id="question">
+    </div>
+    <div class="form-group">
+      <label for="password">Answer 1</label>
+      <input type="password" class="form-control" formControlName="password" id="password">
+    </div>
+    <button type="button" class="btn btn-primary" type="submit">Update</button>
+    <button type="button" class="btn btn-primary" type="submit">Cancel</button>
+  </div>
+</form>
