@@ -8,15 +8,18 @@
     </div>
     <div class="form-group">
       <label for="answers1">Answer 1</label>
-      <input type="text" class="form-control" formControlName="answers1" id="answers1" [(ngModel)]="question.answers[0]">
+      <input type="text" class="form-control" formControlName="answers1" id="answers1" [(ngModel)]="question.answers[0][0]">
+      <input type="text" class="form-control" formControlName="isTrue1" id="isTrue1" [(ngModel)]="question.answers[0][1]">
     </div>
     <div class="form-group">
       <label for="answers2">Answer 2</label>
-      <input type="text" class="form-control" formControlName="answers2" id="answers2" [(ngModel)]="question.answers[1]">
+      <input type="text" class="form-control" formControlName="answers2" id="answers2" [(ngModel)]="question.answers[1][0]">
+      <input type="text" class="form-control" formControlName="isTrue2" id="isTrue2" [(ngModel)]="question.answers[1][1]">
     </div>
     <div class="form-group">
       <label for="answers3">Answer 3</label>
-      <input type="text" class="form-control" formControlName="answers3" id="answers3" [(ngModel)]="question.answers[2]">
+      <input type="text" class="form-control" formControlName="answers3" id="answers3" [(ngModel)]="question.answers[2][0]">
+      <input type="text" class="form-control" formControlName="isTrue3" id="isTrue3" [(ngModel)]="question.answers[2][1]">
     </div>
     <button type="button" (click)="save()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Update</button>
     <button type="button" (click)="close()" class="btn btn-primary" type="submit">Cancel</button>

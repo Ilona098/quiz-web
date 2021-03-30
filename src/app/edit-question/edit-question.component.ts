@@ -28,8 +28,11 @@ export class EditQuestionComponent implements OnInit {
       objectId: [],
       question: [],
       answers1: [],
+      isTrue1: [],
       answers2: [],
-      answers3: []
+      isTrue2: [],
+      answers3: [],
+      isTrue3: []
     });
   }
 
@@ -49,6 +52,7 @@ export class EditQuestionComponent implements OnInit {
     const question = this.question;
     this.dataService.updateQuestion(question).subscribe(response => {
       this.question = response;
+      this.router.navigate(['/questions']);
     });
   }
 
