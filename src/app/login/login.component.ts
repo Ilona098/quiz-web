@@ -11,17 +11,20 @@ import {DataService} from '../services/data.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error = null;
-
+  userLogin: string;
   constructor(private router: Router, fb: FormBuilder, private dataService: DataService) {
 
     // Init intial login form
     this.loginForm = fb.group({
       login: '',
       password: '',
+      permission: ''
     });
   }
 
   ngOnInit() {
+    this.userLogin = this.dataService.getUserName();
+    console.log('hi I am in login component ' + this.dataService.getUserName().toString());
   }
 
   submitForm() {
@@ -33,8 +36,9 @@ export class LoginComponent implements OnInit {
       this.dataService.login(login, password).subscribe(response => {
         console.log(JSON.stringify(response));
         this.dataService.setUserId(response['objectId']);
-        this.dataService.setToken(response['user-token']);
-        this.dataService.setUserName(response['user']);
+        this.dataService.setToken(response['token']);
+        this.dataService.setUserName(response['name']);
+        this.dataService.setUserPermission(response['permission']);
         this.router.navigate(['/categories']);
         // }
       }, error => {

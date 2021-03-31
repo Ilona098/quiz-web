@@ -10,6 +10,7 @@ import { CategoryQuestionsComponent } from './category-questions/category-questi
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EditQuestionComponent } from './edit-question/edit-question.component';
     CategoriesComponent,
     CategoryQuestionsComponent,
     LoginComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

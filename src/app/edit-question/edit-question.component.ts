@@ -21,9 +21,9 @@ export class EditQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.question = this.dataService.getter();
-    console.log('ilona' + this.question);
-    console.log(this.question._id);
-    console.log(this.question.answers[0]);
+    // console.log('ilona' + this.question);
+    // console.log(this.question._id);
+    // console.log(this.question.answers[0]);
     this.questionForm = this.fb.group({
       objectId: [],
       question: [],

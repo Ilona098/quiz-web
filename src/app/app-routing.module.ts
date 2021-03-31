@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {EditQuestionComponent} from './edit-question/edit-question.component';
 
 
+
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'questions', component: CategoryQuestionsComponent},

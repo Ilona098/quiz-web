@@ -1,9 +1,14 @@
-import {Injectable} from '@angular/core';
+
+import {Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Category} from '../interfaces/category';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Question} from '../interfaces/question';
 import {User} from '../interfaces/user';
+import {JwtHelperService} from '@auth0/angular-jwt';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +16,9 @@ export class DataService {
   private user = '';
   private objectId = '';
   private question: Question;
+  private permission = '';
+  public helper: JwtHelperService = new JwtHelperService();
+  category = '';
 
   backendUrl = 'http://localhost:3000';
 
@@ -55,8 +63,12 @@ export class DataService {
     const url = this.backendUrl + '/questions';
     return this.http.get<Question[]>(url);
   }
-  getAllQuestionsForCategory(): Observable<Question[]> {
-    const url = this.backendUrl + '/questions/category/Math';
+  getAllCategories(category: string): Observable<Question[]> {
+    const url = this.backendUrl + '/questions/category/' + category;
+    return this.http.get<Question[]>(url);
+  }
+  getAllQuestionsForCategory(category: string): Observable<Question[]> {
+    const url = this.backendUrl + '/questions/category/' + category ;
     return this.http.get<Question[]>(url);
   }
   getUserName(): string {
@@ -68,13 +80,12 @@ export class DataService {
 
   /**
    * Sets the login of the user
-   * @param login
+   * @param name
    */
-  setUserName(login: string) {
-    localStorage.setItem('user', login);
-    this.user = login;
+  setUserName(name: string) {
+    localStorage.setItem('user', name);
+    this.user = name;
   }
-
 
   // User objectId needed for setting relations in notifications component
   getUserId(): string {
@@ -92,20 +103,22 @@ export class DataService {
    * Returns the user token
    */
   getToken(): string {
-    if (localStorage.getItem('user-token')) {
-      return localStorage.getItem('user-token');
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token');
     }
     return '';
   }
-
+  isTokenValid() {
+    const token = localStorage.getItem("token");
+    return this.helper.isTokenExpired(token);
+  }
   /**
    * Sets the user token
    *
    * @param token
    */
   setToken(token: string) {
-    console.log('I am here:' + token);
-    localStorage.setItem('user-token', token);
+    localStorage.setItem('token', token);
   }
 
   resetStorage() {
@@ -117,6 +130,27 @@ export class DataService {
   }
   getter() {
     return this.question;
+  }
+  setCategory(category: string) {
+    this.category = category;
+  }
+  getCategory(){
+    return this.category;
+  }
+  getUserPermission(): string {
+    if (localStorage.getItem('permission')) {
+      return localStorage.getItem('permission');
+    }
+    return this.user;
+  }
+
+  /**
+   * Sets the login of the user
+   * @param permission
+   */
+  setUserPermission(permission: string) {
+    localStorage.setItem('permission', permission);
+    this.permission = permission;
   }
   // updateQuestion(question: Question): Observable<any> {
   //   const url = this.backendUrl + '/questions/' + question._id;
