@@ -21,9 +21,6 @@ export class EditQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.question = this.dataService.getter();
-    // console.log('ilona' + this.question);
-    // console.log(this.question._id);
-    // console.log(this.question.answers[0]);
     this.questionForm = this.fb.group({
       objectId: [],
       question: [],
@@ -35,20 +32,7 @@ export class EditQuestionComponent implements OnInit {
       isTrue3: []
     });
   }
-
-  //
-  // mapQuestionToForm(question: Question) {
-  //   this.questionForm.get('objectId').setValue(question._id);
-  //   this.questionForm.get('question').setValue(question.question);
-  //   this.questionForm.get('answers1').setValue(question.answers[0]);
-  //   this.questionForm.get('answers2').setValue(question.answers[1]);
-  //   this.questionForm.get('answers3').setValue(question.answers[2]);
-  // }
-
   save() {
-    // const question = this.questionForm.value.question;
-    // const answers1 = [this.questionForm.value.answers[0]];
-    // console.log(this.question);
     const question = this.question;
     this.dataService.updateQuestion(question).subscribe(response => {
       this.question = response;
@@ -57,14 +41,14 @@ export class EditQuestionComponent implements OnInit {
   }
 
   close() {
+    this.router.navigate(['/questions']);
   }
 
   submitForm() {
-    //
   }
 
-  showEditForm(objectId: string) {
-    console.log(objectId);
-
-  }
+  // showEditForm(objectId: string) {
+  //   console.log(objectId);
+  //
+  // }
 }

@@ -31,16 +31,12 @@ export class CategoryQuestionsComponent implements OnInit {
     this.currentCategory = this.dataService.getCategory();
     this.dataService.getAllQuestionsForCategory(this.currentCategory).subscribe(questions => {
       this.questions = questions;
-      // console.log(questions[this.currentQuestion]._id);
-      // questions.forEach(function (item, index) {
-        // console.log(item._id, index);
-      // });
-      // this.userLogin = this.dataService.getUserName();
-      console.log('hi I am in login component ' + this.dataService.getUserName());
+
+      // console.log('hi I am in login component ' + this.dataService.getUserName());
     });
     this.randomQuestionNumber = Math.floor(Math.random() * this.questions.length - 1);
     this.premission = this.dataService.getUserPermission();
-    console.log(this.premission);
+    // console.log(this.premission);
   }
 
   onAnswer(question: string) {
@@ -67,14 +63,9 @@ export class CategoryQuestionsComponent implements OnInit {
   showAllQuizzes() {
     this.router.navigate(['/categories']);
   }
-
-  // tslint:disable-next-line:variable-name
   onEditQuestion() {
-    // console.log(this.questions[this.currentQuestion]._id);
     this.currnetId = this.questions[this.currentQuestion]._id;
-    // console.log(this.currnetId);
     this.oneQuestion = this.questions[this.currentQuestion];
-    // console.log(this.oneQuestion);
     this.onUpdateQuestion.emit(this.oneQuestion);
     this.dataService.setter(this.oneQuestion);
     this.router.navigate(['/edit-question']);

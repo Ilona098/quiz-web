@@ -12,16 +12,11 @@ import {Router} from '@angular/router';
 export class CategoriesComponent implements OnInit {
 categories: Category[] = [];
 category = '';
-currentCategory = 0;
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit(): void {
     this.dataService.getCategories().subscribe(categories => {
       this.categories = categories;
-      // // console.log(categories);
-      // categories.forEach(function (category, index) {
-      //   console.log(category.name, index);
-      //   });
     });
   }
   onSelected(category: string) {
@@ -34,9 +29,5 @@ currentCategory = 0;
         this.router.navigate(['/questions']);
       }
     // });
-  }
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/']);
   }
 }

@@ -1,6 +1,5 @@
-<!--<div (onUpdateQuestion)="showEditForm($event._id)">-->
 <div>
-<form [formGroup]="questionForm" (submit)="submitForm()">
+<form [formGroup]="questionForm" >
   <div class="container col-md-2" style="margin-top: 15px">
     <div class="form-group">
       <label for="question">Question</label>
@@ -21,7 +20,8 @@
       <input type="text" class="form-control" formControlName="answers3" id="answers3" [(ngModel)]="question.answers[2][0]">
       <input type="text" class="form-control" formControlName="isTrue3" id="isTrue3" [(ngModel)]="question.answers[2][1]">
     </div>
-    <button type="button" (click)="save()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Update</button>
+    <button type="button" (click)="save()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Update
+    </button>
     <button type="button" (click)="close()" class="btn btn-primary" type="submit">Cancel</button>
   </div>
 </form>
