@@ -111,7 +111,7 @@ export class DataService {
     return '';
   }
   isTokenValid() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     return this.helper.isTokenExpired(token);
   }
   /**
