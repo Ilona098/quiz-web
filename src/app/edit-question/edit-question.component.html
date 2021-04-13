@@ -1,6 +1,6 @@
 <div>
 <form [formGroup]="questionForm" >
-  <div class="container col-md-2" style="margin-top: 15px">
+  <div class="container col-md-3" style="margin-top: 15px">
     <div class="form-group">
       <label for="question">Question</label>
       <input type="text" class="form-control" formControlName="question" id="question" name="question" [(ngModel)]="question.question">
@@ -20,9 +20,17 @@
       <input type="text" class="form-control" formControlName="answers3" id="answers3" [(ngModel)]="question.answers[2][0]">
       <input type="text" class="form-control" formControlName="isTrue3" id="isTrue3" [(ngModel)]="question.answers[2][1]">
     </div>
-    <button type="button" (click)="save()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Update
+    <div class="form-group">
+      <label for="questionCategory">Category</label>
+      <input type="text" class="form-control" formControlName="questionCategory" id="questionCategory" name="question" [(ngModel)]="question.questionCategory">
+    </div>
+    <button type="button" (click)="save()"class="btn btn-success" type="submit" style="margin-right: 10px;">Update
     </button>
-    <button type="button" (click)="close()" class="btn btn-primary" type="submit">Cancel</button>
+    <button type="button" (click)="addNew()"class="btn btn-primary" type="submit" style="margin-right: 10px;">Add New
+    </button>
+    <button type="button" (click)="delete()"class="btn btn-danger" type="submit" style="margin-right: 10px;">Delete
+    </button>
+    <button type="button" (click)="close()" class="btn btn-primary" type="submit" style="float: right">Cancel</button>
   </div>
 </form>
 </div>

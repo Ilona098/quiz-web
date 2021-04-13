@@ -2,7 +2,7 @@
 <div class="container p-5">
   <div class="row">
     <div class="col-sm-8 offset-2">
-      <div *ngIf="currentQuestion < 5">
+      <div *ngIf="currentQuestion < questions.length">
         <p class="text-center">{{currentQuestion + 1}} of {{questions.length}}</p>
         <h3>{{questions[currentQuestion].question}}</h3>
         <ul class="list-group" *ngFor="let question of questions[currentQuestion].answers">
@@ -15,7 +15,7 @@
         <button class="btn btn-primary" (click)="onNext()" style="margin-right: 5px;">Next</button>
         <button *ngIf="premission === 'high'" class="btn btn-danger" (click)="onEditQuestion()">Edit</button>
       </div>
-      <div *ngIf="currentQuestion > 4">
+      <div *ngIf="currentQuestion == questions.length">
         <div class="col-sm-6 offset-2">
           <h2 style="margin-bottom: 10px; margin-left: 30px;">Quiz finished</h2>
           <button class="btn btn-success" (click)="showResult()" style="margin-right: 10px;"

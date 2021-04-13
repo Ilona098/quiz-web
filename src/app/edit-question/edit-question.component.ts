@@ -29,7 +29,8 @@ export class EditQuestionComponent implements OnInit {
       answers2: [],
       isTrue2: [],
       answers3: [],
-      isTrue3: []
+      isTrue3: [],
+      questionCategory: []
     });
   }
   save() {
@@ -39,7 +40,20 @@ export class EditQuestionComponent implements OnInit {
       this.router.navigate(['/questions']);
     });
   }
-
+  delete() {
+    const question = this.question;
+    this.dataService.deleteQuestion(question).subscribe(response => {
+      this.question = response;
+      this.router.navigate(['/questions']);
+    });
+  }
+  addNew() {
+    const question = this.question;
+    this.dataService.createQuestion(question).subscribe(response => {
+      this.question = response;
+      this.router.navigate(['/questions']);
+    });
+  }
   close() {
     this.router.navigate(['/questions']);
   }

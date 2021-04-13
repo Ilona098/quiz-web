@@ -19,6 +19,8 @@ export class DataService {
   private permission = '';
   public helper: JwtHelperService = new JwtHelperService();
   category = '';
+  private category1: Category;
+  private token = this.getToken();
 
   backendUrl = 'http://localhost:3000';
 
@@ -27,7 +29,7 @@ export class DataService {
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({'Content-Type': 'application/json',  Authorization: 'Bearer ' + this.token})
     };
 
     this.httpOptionsText = {
@@ -134,7 +136,7 @@ export class DataService {
   setCategory(category: string) {
     this.category = category;
   }
-  getCategory(){
+  getCategory() {
     return this.category;
   }
   getUserPermission(): string {
@@ -162,5 +164,19 @@ export class DataService {
     return this.http.patch<User>(url, JSON.stringify([{'propQuestion': 'question', 'value': question.question},
       {'propQuestion': 'questionCategory', 'value': question.questionCategory},
       {'propQuestion': 'answers', 'value': question.answers}]), this.httpOptions);
+  }
+  createQuestion(question: Question): Observable<any> {
+    const url = this.backendUrl + '/questions/';
+    return this.http.post<User>(url, JSON.stringify({ 'question': question.question,
+      'questionCategory': question.questionCategory,
+      'answers': question.answers}), this.httpOptions);
+  }
+  deleteQuestion(question: Question): Observable<any> {
+    const url = this.backendUrl + '/questions/' + question._id;
+    return this.http.delete<User>(url, this.httpOptions);
+  }
+  addNewCategory(category1: Category): Observable<any> {
+    const url = this.backendUrl + '/questions/';
+    return this.http.post<User>(url, JSON.stringify({ name: category1.name}), this.httpOptions);
   }
 }

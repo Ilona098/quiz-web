@@ -31,8 +31,6 @@ export class CategoryQuestionsComponent implements OnInit {
     this.currentCategory = this.dataService.getCategory();
     this.dataService.getAllQuestionsForCategory(this.currentCategory).subscribe(questions => {
       this.questions = questions;
-
-      // console.log('hi I am in login component ' + this.dataService.getUserName());
     });
     this.randomQuestionNumber = Math.floor(Math.random() * this.questions.length - 1);
     this.premission = this.dataService.getUserPermission();
@@ -51,11 +49,16 @@ export class CategoryQuestionsComponent implements OnInit {
     } else {
       this.incorrectAnswers++;
     }
-    // this.answerSelected = true;
+    this.answerSelected = true;
   }
   onNext() {
     this.currentQuestion++;
+    this.answerSelected = false;
   }
+  // onBack() {
+  //   this.currentQuestion--;
+  //   this.answerSelected = false;
+  // }
 
   showResult() {
     this.result = true;
